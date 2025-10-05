@@ -1,102 +1,208 @@
-import Image from "next/image";
+"use client";
+
+import { Calendar, MapPin, Sparkles, Ticket } from "lucide-react";
+import { AuthButton } from "@/components/auth-button";
+import { CartButton } from "@/components/cart-button";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const upcomingShows = [
+    {
+      id: 1,
+      title: "Noche de Stand Up",
+      comedian: "Carlos Rodríguez",
+      date: "15 Oct 2025",
+      time: "8:00 PM",
+      venue: "Teatro Municipal",
+      city: "Bogotá",
+      price: "$50.000",
+      image: "bg-gradient-to-br from-purple-500 to-pink-500"
+    },
+    {
+      id: 2,
+      title: "Comedia en Vivo",
+      comedian: "Ana Martínez",
+      date: "20 Oct 2025",
+      time: "9:00 PM",
+      venue: "Club de la Comedia",
+      city: "Medellín",
+      price: "$45.000",
+      image: "bg-gradient-to-br from-blue-500 to-cyan-500"
+    },
+    {
+      id: 3,
+      title: "Especial de Humor",
+      comedian: "Luis Gómez",
+      date: "25 Oct 2025",
+      time: "7:30 PM",
+      venue: "Auditorio Central",
+      city: "Cali",
+      price: "$55.000",
+      image: "bg-gradient-to-br from-orange-500 to-red-500"
+    }
+  ];
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <div className="min-h-screen">
+      {/* Header/Navigation */}
+      <header className="border-b sticky top-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Ticket className="h-6 w-6" />
+            <span className="font-bold text-xl">ComedyTickets</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <CartButton />
+            <AuthButton />
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </header>
+
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-background to-muted/20 py-20 md:py-32">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-6">
+              <Sparkles className="h-4 w-4" />
+              <span className="text-sm font-medium">Los mejores shows de comedia</span>
+            </div>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
+              Risas garantizadas en cada
+              <span className="text-primary"> show</span>
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground mb-8">
+              Descubre los mejores comediantes del país. Compra tus tickets de forma segura y rápida.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/eventos" className="bg-primary text-primary-foreground px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-opacity text-center">
+                Ver Eventos
+              </a>
+              <button className="border border-border px-8 py-3 rounded-lg font-medium hover:bg-accent transition-colors">
+                Saber más
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Upcoming Shows Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Próximos Shows</h2>
+            <p className="text-muted-foreground text-lg">No te pierdas estos increíbles eventos</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {upcomingShows.map((show) => (
+              <a key={show.id} href={`/eventos/${show.id}`} className="border rounded-xl overflow-hidden hover:shadow-lg transition-shadow group">
+                <div className={`h-48 ${show.image} flex items-center justify-center`}>
+                  <span className="text-white text-2xl font-bold">
+                    {show.comedian.split(' ').map(n => n[0]).join('')}
+                  </span>
+                </div>
+                <div className="p-6">
+                  <h3 className="font-bold text-xl mb-2">{show.title}</h3>
+                  <p className="text-muted-foreground mb-4">{show.comedian}</p>
+
+                  <div className="space-y-2 mb-4">
+                    <div className="flex items-center gap-2 text-sm">
+                      <Calendar className="h-4 w-4 text-muted-foreground" />
+                      <span>{show.date} • {show.time}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <MapPin className="h-4 w-4 text-muted-foreground" />
+                      <span>{show.venue}, {show.city}</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Ticket className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="font-bold text-xl mb-2">Compra Segura</h3>
+              <p className="text-muted-foreground">Tus tickets protegidos con la mejor tecnología</p>
+            </div>
+            <div className="text-center">
+              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Calendar className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="font-bold text-xl mb-2">Eventos Exclusivos</h3>
+              <p className="text-muted-foreground">Acceso a los mejores shows de comedia</p>
+            </div>
+            <div className="text-center">
+              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Sparkles className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="font-bold text-xl mb-2">Experiencia Única</h3>
+              <p className="text-muted-foreground">Momentos inolvidables garantizados</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="bg-primary text-primary-foreground rounded-2xl p-12 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">¿Listo para reír sin parar?</h2>
+            <p className="text-lg mb-8 opacity-90">Únete a miles de personas que ya disfrutan de los mejores shows</p>
+            <a href="/eventos" className="inline-block bg-background text-foreground px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-opacity">
+              Explorar Eventos
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t py-12">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <Ticket className="h-5 w-5" />
+                <span className="font-bold">ComedyTickets</span>
+              </div>
+              <p className="text-sm text-muted-foreground">La plataforma #1 para tickets de comedia en Colombia</p>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Eventos</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><a href="/eventos" className="hover:text-foreground">Próximos Shows</a></li>
+                {/* <li><a href="#" className="hover:text-foreground">Comediantes</a></li>
+                <li><a href="#" className="hover:text-foreground">Ciudades</a></li> */}
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Compañía</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><a href="#" className="hover:text-foreground">Nosotros</a></li>
+                <li><a href="#" className="hover:text-foreground">Contacto</a></li>
+                <li><a href="#" className="hover:text-foreground">Ayuda</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Legal</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><a href="#" className="hover:text-foreground">Términos</a></li>
+                <li><a href="#" className="hover:text-foreground">Privacidad</a></li>
+                <li><a href="#" className="hover:text-foreground">Cookies</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="mt-12 pt-8 border-t text-center text-sm text-muted-foreground">
+            <p>© 2025 ComedyTickets. Todos los derechos reservados.</p>
+          </div>
+        </div>
       </footer>
     </div>
   );
